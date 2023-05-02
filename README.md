@@ -5,9 +5,7 @@
 In this work, a rigid robot is hybridized with a soft part to improve its properties of relative positioning and safe interaction. While the design of the device is quite simple, the kinematics, on the other hand, becomes complex. Pre-operative planning of such a robot is a challenge that is faced in this work. The clinical context is the automation of transrectal prostate biopsy: a robot is connected to a thin ultrasound (US) probe instrumented with a needle through a flexible silicone part. The procedure consists of: moving the probe near the prostate through the rectum, aligning the probe with identified lesions in the prostate, and shooting the needle to collect tissue samples. In this repository you will find the simulations showing the feasibility of our methods to solve the planning of the entire procedure.
 
 <body>
-<img src="images/step3_needleshot.png" width="60%" class='left'/>
-<img src="images/prostatelesionscolor2.png" width="19%" class='right'/>
-<img src="images/prostatelesionscolor1.png" width="19%" class='right'/>
+<img src="images/step3_needleshot.png" width="60%" class='center'/>
 </body>
 
 ## Requirements
