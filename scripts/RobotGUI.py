@@ -46,22 +46,22 @@ class App(threading.Thread):
         self.angle6 = tkinter.DoubleVar()
 
         tkinter.Scale(self.root, variable=self.angle1, resolution=0.001, length=400,
-                      from_=self.robot.getData('minAngles1'), to=self.robot.getData('maxAngles1'),
+                      from_=self.robot.getData('minAngles1').value, to=self.robot.getData('maxAngles1').value,
                       orient=tkinter.VERTICAL).grid(row=1, column=0)
         tkinter.Scale(self.root, variable=self.angle2, resolution=0.001, length=400,
-                      from_=self.robot.getData('minAngles2'), to=self.robot.getData('maxAngles2'),
+                      from_=self.robot.getData('minAngles2').value, to=self.robot.getData('maxAngles2').value,
                       orient=tkinter.VERTICAL).grid(row=1, column=1)
         tkinter.Scale(self.root, variable=self.angle3, resolution=0.001, length=400,
-                      from_=self.robot.getData('minAngles3'), to=self.robot.getData('maxAngles3'),
+                      from_=self.robot.getData('minAngles3').value, to=self.robot.getData('maxAngles3').value,
                       orient=tkinter.VERTICAL).grid(row=1, column=2)
         tkinter.Scale(self.root, variable=self.angle4, resolution=0.001, length=400,
-                      from_=self.robot.getData('minAngles4'), to=self.robot.getData('maxAngles4'),
+                      from_=self.robot.getData('minAngles4').value, to=self.robot.getData('maxAngles4').value,
                       orient=tkinter.VERTICAL).grid(row=1, column=3)
         tkinter.Scale(self.root, variable=self.angle5, resolution=0.001, length=400,
-                      from_=self.robot.getData('minAngles5'), to=self.robot.getData('maxAngles5'),
+                      from_=self.robot.getData('minAngles5').value, to=self.robot.getData('maxAngles5').value,
                       orient=tkinter.VERTICAL).grid(row=1, column=4)
         tkinter.Scale(self.root, variable=self.angle6, resolution=0.001, length=400,
-                      from_=self.robot.getData('minAngles6'), to=self.robot.getData('maxAngles6'),
+                      from_=self.robot.getData('minAngles6').value, to=self.robot.getData('maxAngles6').value,
                       orient=tkinter.VERTICAL).grid(row=1, column=5)
 
         self.root.mainloop()
@@ -71,6 +71,7 @@ class RobotGUI(Sofa.Core.Controller):
 
     def __init__(self, *args, **kwargs):
         Sofa.Core.Controller.__init__(self, *args, **kwargs)
+        self.name = "RobotGUIController"
         self.robot = kwargs["robot"]
         self.app = App(self.robot, kwargs.get("initAngles", [0., 0., 0., 0., 0., 0.]))
 
@@ -93,7 +94,7 @@ class RobotGUI(Sofa.Core.Controller):
 
         return
 
-    def onBeginAnimationStep(self, dt):
+    def onAnimateBeginEvent(self, e):
         angles = [
             self.app.angle1.get(),
             self.app.angle2.get(),
@@ -104,7 +105,7 @@ class RobotGUI(Sofa.Core.Controller):
         ]
 
         angles = numpy.array(angles)
-        self.robot.angles = angles.tolist()
+        self.robot.angles.value = angles.tolist()
 
         self.formatAnglesToSendThroughUSB(angles)
 

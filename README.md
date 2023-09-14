@@ -30,7 +30,7 @@ Requirements' and other plugins dependency (to enable in CMake GUI):
 Download the following plugin for SOFA:
 
 - [SoftRobots](https://github.com/SofaDefrost/SoftRobots)
-- SoftRobots.Inverse plugin. It is a private plugin used to solve the inverse kinematics of the robot. The plugin is distributed with [SOFA binaries](https://github.com/sofa-framework/sofa/releases).
+- [SoftRobots.Inverse](https://github.com/SofaDefrost/SoftRobots.Inverse) plugin used to solve the inverse kinematics of the robot. The plugin is also distributed with [SOFA binaries](https://github.com/sofa-framework/sofa/releases).
 If you want to try the simulations without SoftRobots.Inverse set `INVERSE=False` in the corresponding python scene file.
 
 Requirements' and other plugins dependency (to enable in CMake GUI):

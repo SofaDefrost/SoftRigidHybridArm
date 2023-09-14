@@ -205,9 +205,9 @@ def createRobot(node, name='Robot', translation=[0, 0, 0], initConfiguration=Non
 
 # Test/example scene
 def createScene(rootNode):
-    INVERSE = True  # Inverse kinematics problem solving (effector control). If True, INTERFACE and EXTERNALCONTROL will be ignored.
+    INVERSE = False  # Inverse kinematics problem solving (effector control). If True, INTERFACE and EXTERNALCONTROL will be ignored.
     INTERFACE = not INVERSE  # User interface to control the robot
-    WITHSOFTPART = True  # Add soft part between the robot and the probe
+    WITHSOFTPART = False  # Add soft part between the robot and the probe
     COMMUNICATION = False  # Send/receive joints' value
     EXTERNALCONTROL = False  # Use values received from an external software to control the robot (requires COMMUNICATION=True)
 
@@ -234,7 +234,7 @@ def createScene(rootNode):
     robot = createRobot(simulation, inverse=INVERSE, initConfiguration=initConfiguration, withSoftPart=WITHSOFTPART)
 
     if INTERFACE and not INVERSE:
-        RobotGUI(robot=robot, initAngles=initAngles)
+        robot.addObject(RobotGUI(robot=robot, initAngles=initAngles))
 
     if COMMUNICATION:
         # Option1: Communication through usb
